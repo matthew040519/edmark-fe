@@ -1,7 +1,7 @@
 {
   "name": "edmark-react",
   "version": "0.1.0",
-  "homepage": "https://matthew040519.github.io/edmark-fe/",
+  "homepage": "https://matthew040519.github.io/edmark-fe",
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.7.15",
