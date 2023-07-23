@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import LandingHero from "./landinghero";
+import LandingPolygon from "./polygon";
 
 const navigation = [
   { name: 'Home', href: '#' },
@@ -20,6 +21,7 @@ export default function LandingHeader() {
 
   return (
     <div>
+    <LandingPolygon />
     <header className="absolute inset-x-0 top-0 z-50">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
@@ -103,7 +105,6 @@ export default function LandingHeader() {
         </Dialog>
       </header>
     <LandingHero />
-    test
     </div>
   )
 }

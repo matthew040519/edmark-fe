@@ -1,6 +1,8 @@
 
-import LandingHeader from "./components/landingheader";
-import Products from "./components/products";
+import LandingHeader from "./components/website/landingheader";
+import Products from "./components/website/products";
+import LandingStats from "./components/website/landingstats";
+import LandingTestimonials from "./components/website/Testimonials";
 
 export default function App() {
 
@@ -10,6 +12,8 @@ export default function App() {
         
         <LandingHeader />
         <Products/>
+        <LandingStats />
+        <LandingTestimonials />
       </div>
     </>
       
