@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import LandingHeader from "./landingheader";
 import LandingPolygon from "./polygon";
 
 export default function LandingHero() {
@@ -6,6 +7,7 @@ export default function LandingHero() {
   return (
     
         <>
+          <LandingHeader/>
           <LandingPolygon></LandingPolygon>
           <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-20">
             <div className="hidden sm:mb-8 sm:flex sm:justify-center">

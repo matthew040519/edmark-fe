@@ -2,23 +2,18 @@
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import LandingHero from "./landinghero";
 import LandingPolygon from "./polygon";
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-const Home = lazy(() => import('../../App'));
+const Home = lazy(() => import('./home'));
 const Products = lazy(() => import('../website/pages/products'));
 
 const navigation = [
-  { name: 'Home', link: <Home />, href: '/' },
-  { name: 'Products', link: <Products />, href: '/products' },
+  { name: 'Home', link: Home, href: '/edmark-fe/' },
+  { name: 'Products', link: Products, href: '/edmark-fe/products' },
   { name: 'Blogs', link: Home, href: '#' },
   { name: 'About Company', link: Home, href: '#' },
 ]
-
-// function classNames(...classes) {
-//   return classes.filter(Boolean).join(' ')
-// }
 
 export default function LandingHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -49,30 +44,14 @@ export default function LandingHeader() {
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-          {/* <Routes>    
-            <Route path="/" element={<Home />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="contact" element={<Products />} />
-              <Route path="*" element={<Products />} />
-            </Route>
-          </Routes> */}
+          
            {navigation.map((item) => (  
               <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
                       {item.name}
                       </a>
            ))} 
               
-                {/* <Routes>    
-                  
-                {navigation.map((item) => (  
-                    
-                      <Route exact key={item.name} path={item.href} element={item.link}></Route>
-                    
-                      ))}  
-                    
-                  
-                </Routes> */}
+                
            
             {/* <Routes>
               {navigation.map((item) => (
@@ -81,9 +60,10 @@ export default function LandingHeader() {
             </Routes> */}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
+            <a href="/edmark-fe/login" className="text-sm font-semibold leading-6 text-gray-900">
               Log in <span aria-hidden="true">&rarr;</span>
             </a>
+            {/* <Link to={'/edmark-fe/login'} className="nav-link"> Login </Link> */}
           </div>
         </nav>
         <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
@@ -133,7 +113,14 @@ export default function LandingHeader() {
           </Dialog.Panel>
         </Dialog>
       </header>
-    <LandingHero />
+    <Routes>    
+                  
+                {navigation.map((item) => (  
+                    
+                      <Route exact key={item.name} path={item.href} Component={item.link}></Route>
+                    
+                      ))}  
+                </Routes>
     </div>
   )
 }
