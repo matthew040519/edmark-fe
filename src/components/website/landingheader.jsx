@@ -4,12 +4,16 @@ import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import LandingHero from "./landinghero";
 import LandingPolygon from "./polygon";
+import { lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
+const Home = lazy(() => import('../../App'));
+const Products = lazy(() => import('../website/pages/products'));
 
 const navigation = [
-  { name: 'Home', href: '#' },
-  { name: 'Products', href: '#' },
-  { name: 'Blogs', href: '#' },
-  { name: 'About Company', href: '#' },
+  { name: 'Home', link: <Home />, href: '/' },
+  { name: 'Products', link: <Products />, href: '/products' },
+  { name: 'Blogs', link: Home, href: '#' },
+  { name: 'About Company', link: Home, href: '#' },
 ]
 
 // function classNames(...classes) {
@@ -45,11 +49,36 @@ export default function LandingHeader() {
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
+          {/* <Routes>    
+            <Route path="/" element={<Home />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="contact" element={<Products />} />
+              <Route path="*" element={<Products />} />
+            </Route>
+          </Routes> */}
+           {navigation.map((item) => (  
               <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
-                {item.name}
-              </a>
-            ))}
+                      {item.name}
+                      </a>
+           ))} 
+              
+                {/* <Routes>    
+                  
+                {navigation.map((item) => (  
+                    
+                      <Route exact key={item.name} path={item.href} element={item.link}></Route>
+                    
+                      ))}  
+                    
+                  
+                </Routes> */}
+           
+            {/* <Routes>
+              {navigation.map((item) => (
+               <Route path={item.href} element={item.link} />
+               ))}
+            </Routes> */}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <a href="#" className="text-sm font-semibold leading-6 text-gray-900">

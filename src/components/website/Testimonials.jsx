@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import LandingPolygon from "./polygon";
-import { Carousel } from 'flowbite';
+// import { Carousel } from 'flowbite';
 
 // const items = [
 //     {
