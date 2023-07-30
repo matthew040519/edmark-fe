@@ -5,6 +5,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import LandingPolygon from "./polygon";
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import Login from '../Login';
 const Home = lazy(() => import('./home'));
 const Products = lazy(() => import('../website/pages/products'));
 
@@ -50,17 +51,9 @@ export default function LandingHeader() {
                       {item.name}
                       </a>
            ))} 
-              
-                
-           
-            {/* <Routes>
-              {navigation.map((item) => (
-               <Route path={item.href} element={item.link} />
-               ))}
-            </Routes> */}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/edmark-fe/login" className="text-sm font-semibold leading-6 text-gray-900">
+            <a href="/login" className="text-sm font-semibold leading-6 text-gray-900">
               Log in <span aria-hidden="true">&rarr;</span>
             </a>
             {/* <Link to={'/edmark-fe/login'} className="nav-link"> Login </Link> */}
@@ -102,7 +95,7 @@ export default function LandingHeader() {
                 </div>
                 <div className="py-6">
                   <a
-                    href="#"
+                    href="/login"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                   >
                     Log in
@@ -120,6 +113,7 @@ export default function LandingHeader() {
                       <Route exact key={item.name} path={item.href} Component={item.link}></Route>
                     
                       ))}  
+                      <Route exact key="login" path="/login" Component={Login}></Route>
                 </Routes>
     </div>
   )

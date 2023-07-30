@@ -1,16 +1,40 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 
+import axios from "axios";
+import { useRef, useState } from "react"
+
 export default function Login() {
+
+    const email = useRef(null)
+    const password = useRef(null)
+
+    const [errorMessage, setErrorMessage] = useState("");
+
+    function loginUser(event)
+    {
+        var body = {
+            'email': email.current.value,
+            'password': password.current.value
+        }
+        event.preventDefault();
+        console.log(email.current.value)
+        console.log(password.current.value)
+        // const json = JSON.stringify({ answer: username, test: 42 });
+        console.log(body)
+        axios.post("http://edmark-backend.test/api/auth/login", body)
+        .then(response => {
+          console.log(response) 
+          window.name = response.data.token
+          setErrorMessage("")
+        }  )
+        .catch(err => {
+          console.log(err)
+          setErrorMessage(err.response.data.message)
+        } )
+    }
+
     return (
       <>
-        {/*
-          This example requires updating your template:
-  
-          ```
-          <html class="h-full bg-white">
-          <body class="h-full">
-          ```
-        */}
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
@@ -22,15 +46,16 @@ export default function Login() {
               Sign in to your account
             </h2>
           </div>
-  
+          {errorMessage && <div className="error"> {errorMessage} </div>}
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" action="#" method="POST">
+            <form className="space-y-6" onSubmit={loginUser}>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                   Email address
                 </label>
                 <div className="mt-2">
                   <input
+                    ref={email}
                     id="email"
                     name="email"
                     type="email"
@@ -40,7 +65,7 @@ export default function Login() {
                   />
                 </div>
               </div>
-  
+
               <div>
                 <div className="flex items-center justify-between">
                   <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
@@ -54,6 +79,7 @@ export default function Login() {
                 </div>
                 <div className="mt-2">
                   <input
+                    ref={password}
                     id="password"
                     name="password"
                     type="password"
